@@ -81,34 +81,34 @@ begin
 -- opgave 5 incomplete, not very discriptive
         when 5 then 
             declare
-                c_ouders constant pls_integer := 2;
-                c_kinderen constant pls_integer := 1;
-                c_poliskost constant pls_integer := 8;
-                c_vakantiedagen constant pls_integer := 7;
+                co_ouders constant pls_integer := 2;
+                co_kinderen constant pls_integer := 1;
+                co_poliskost constant pls_integer := 8;
+                co_vakantiedagen constant pls_integer := 7;
                 totaal pls_integer;
             begin
                 dbms_output.put_line('tijdelijke verzekering, gezin: 1 kind, 2 volwassen, 7 dagen vakantie: ');
-                totaal:=c_poliskost+((c_ouders*1.25)+(c_kinderen*0.75))*c_vakantiedagen;
+                totaal:=co_poliskost+((co_ouders*1.25)+(co_kinderen*0.75))*co_vakantiedagen;
                 dbms_output.put_line(totaal);
 
                 dbms_output.put_line('doorlopend verzekering, gezin: 1 kind, 2 volwassen, 7 dagen vakantie: ');
-                totaal:=c_poliskost+((c_ouders*50)+(c_kinderen*20));
+                totaal:=co_poliskost+((co_ouders*50)+(co_kinderen*20));
                 dbms_output.put_line(totaal);
             end;
 -- opgave 6 exec in boek schema
         when 6 then 
             declare
                 v_aantal_medewerkers pls_integer;
-                c_bedrag constant pls_integer := 8000;
+                co_bedrag constant pls_integer := 8000;
             begin
                 select count(mnr) into v_aantal_medewerkers from medewerkers;
-                dbms_output.put_line(c_bedrag||' euro gedeeld door '||v_aantal_medewerkers||
-                    ' medewerkers is '|| trunc(c_bedrag/v_aantal_medewerkers, 2));
+                dbms_output.put_line(co_bedrag||' euro gedeeld door '||v_aantal_medewerkers||
+                    ' medewerkers is '|| trunc(co_bedrag/v_aantal_medewerkers, 2));
             end;
 -- opgave 7 warning uncommitted dml, rollback immediately after
         when 7 then 
             declare
-                c_max_maandsal constant pls_integer := 55000;
+                co_max_maandsal constant pls_integer := 55000;
                 v_som_maandsal pls_integer;
                 i pls_integer:=0;
             begin
@@ -120,7 +120,7 @@ begin
                     select sum(maandsal) 
                     into v_som_maandsal
                     from medewerkers;
-                    if v_som_maandsal > c_max_maandsal then 
+                    if v_som_maandsal > co_max_maandsal then 
                         rollback to savepoint A;
                         exit;
                     end if;
@@ -139,18 +139,18 @@ begin
                 v_som_percent pls_integer;
                 v_som_vast pls_integer;
                 v_aantal_medewerkers pls_integer;
-                c_vast_verh_bedrag constant pls_integer := 80;
+                co_vast_verh_bedrag constant pls_integer := 80;
             begin
                 select sum(sal) into v_som_percent
                 from (select maandsal*0.1 as sal from medewerkers);
                 select count(mnr) into v_aantal_medewerkers 
                 from medewerkers;
-                v_som_vast := v_aantal_medewerkers*c_vast_verh_bedrag;
+                v_som_vast := v_aantal_medewerkers*co_vast_verh_bedrag;
                 dbms_output.put_line('totaal percent verhoging: ' || v_som_percent || ', totaal vast bedrag verhoging: ' || v_som_vast);
                 if v_som_vast <= v_som_percent then 
                     dbms_output.put_line('Iedereen 80 euro verhoging is voordeliger voor werkgever, dit wordt doorgevoerd.');
                     update medewerkers
-                    set maandsal = maandsal + c_vast_verh_bedrag;
+                    set maandsal = maandsal + co_vast_verh_bedrag;
                 else
                     dbms_output.put_line('Iedereen 10% salaris verhoging is voordeliger voor werkgever, dit wordt doorgevoerd.');
                     update medewerkers
