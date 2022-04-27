@@ -1,6 +1,6 @@
 # Managing Dependencies
 ### References:
-- [Oracle PL/SQL Programming, 6th ed. by S. Feuerstein, Chapter 20.2](https://datubaze.files.wordpress.com/2015/09/s_feuerstein_oracle-pl_sql-programming_6th-edition_2014.pdf)
+- Oracle PL/SQL Programming, 6th ed. by S. Feuerstein, Chapter 20.2
 - [Understanding Schema Object Dependency - Oracle 19c Database Development Guide](https://docs.oracle.com/en/database/oracle/oracle-database/19/adfns/schema-object-dependency.html#GUID-488AF7D9-EDEB-4589-A503-FDE31CE55B60)
 
 ## Overview
