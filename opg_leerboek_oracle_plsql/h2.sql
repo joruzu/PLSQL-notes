@@ -1,4 +1,6 @@
 accept opgave number prompt 'Geef aan voor welke opgave van hoofdstuk 2 u het antwoord wilt zien (1-9): ';
+set serveroutput on;
+set verify off;
 declare
     opg pls_integer := &opgave;
 begin
@@ -6,11 +8,11 @@ begin
 -- opgave 1
         when 1 then
             declare 
-                gebruikersnaam varchar2(100) := 'testing';
-                datum date := sysdate;
+                v_gebruikersnaam varchar2(100) := 'testing';
+                v_datum date := sysdate;
             begin
-                dbms_output.put_line(gebruikersnaam);
-                dbms_output.put_line(datum);
+                dbms_output.put_line(v_gebruikersnaam);
+                dbms_output.put_line(v_datum);
             end;
 -- opgave 2
         when 2 then 
@@ -61,8 +63,8 @@ begin
                 v_gebdatum date default to_date('14-03-1998', 'dd-mm-yyyy');
                 v_gbd_weekend pls_integer := 0;
                 v_jaardag date;
-                type birthdays_aa is table of date index by pls_integer;
-                jarig_weekend birthdays_aa;
+                type t_birthdays is table of date index by pls_integer;
+                jarig_weekend t_birthdays;
             begin
                 for i in to_number(to_char(v_gebdatum, 'yyyy')) .. to_number(to_char(sysdate, 'yyyy')) loop 
                     v_jaardag := to_date(to_char(v_gebdatum, 'dd-mm"-"')||i, 'dd-mm-yyyy');
@@ -81,34 +83,34 @@ begin
 -- opgave 5 incomplete, not very discriptive
         when 5 then 
             declare
-                co_ouders constant pls_integer := 2;
-                co_kinderen constant pls_integer := 1;
-                co_poliskost constant pls_integer := 8;
-                co_vakantiedagen constant pls_integer := 7;
+                lco_ouders constant pls_integer := 2;
+                lco_kinderen constant pls_integer := 1;
+                lco_poliskost constant pls_integer := 8;
+                lco_vakantiedagen constant pls_integer := 7;
                 totaal pls_integer;
             begin
                 dbms_output.put_line('tijdelijke verzekering, gezin: 1 kind, 2 volwassen, 7 dagen vakantie: ');
-                totaal:=co_poliskost+((co_ouders*1.25)+(co_kinderen*0.75))*co_vakantiedagen;
+                totaal:=lco_poliskost+((lco_ouders*1.25)+(lco_kinderen*0.75))*lco_vakantiedagen;
                 dbms_output.put_line(totaal);
 
                 dbms_output.put_line('doorlopend verzekering, gezin: 1 kind, 2 volwassen, 7 dagen vakantie: ');
-                totaal:=co_poliskost+((co_ouders*50)+(co_kinderen*20));
+                totaal:=lco_poliskost+((lco_ouders*50)+(lco_kinderen*20));
                 dbms_output.put_line(totaal);
             end;
 -- opgave 6 exec in boek schema
         when 6 then 
             declare
-                v_aantal_medewerkers pls_integer;
-                co_bedrag constant pls_integer := 8000;
+                v_aantav_medewerkers pls_integer;
+                lco_bedrag constant pls_integer := 8000;
             begin
-                select count(mnr) into v_aantal_medewerkers from medewerkers;
-                dbms_output.put_line(co_bedrag||' euro gedeeld door '||v_aantal_medewerkers||
-                    ' medewerkers is '|| trunc(co_bedrag/v_aantal_medewerkers, 2));
+                select count(mnr) into v_aantav_medewerkers from medewerkers;
+                dbms_output.put_line(lco_bedrag||' euro gedeeld door '||v_aantav_medewerkers||
+                    ' medewerkers is '|| trunc(lco_bedrag/v_aantav_medewerkers, 2));
             end;
 -- opgave 7 warning uncommitted dml, rollback immediately after
         when 7 then 
             declare
-                co_max_maandsal constant pls_integer := 55000;
+                lco_max_maandsal constant pls_integer := 55000;
                 v_som_maandsal pls_integer;
                 i pls_integer:=0;
             begin
@@ -120,7 +122,7 @@ begin
                     select sum(maandsal) 
                     into v_som_maandsal
                     from medewerkers;
-                    if v_som_maandsal > co_max_maandsal then 
+                    if v_som_maandsal > lco_max_maandsal then 
                         rollback to savepoint A;
                         exit;
                     end if;
@@ -138,19 +140,19 @@ begin
             declare
                 v_som_percent pls_integer;
                 v_som_vast pls_integer;
-                v_aantal_medewerkers pls_integer;
-                co_vast_verh_bedrag constant pls_integer := 80;
+                v_aantav_medewerkers pls_integer;
+                lco_vast_verh_bedrag constant pls_integer := 80;
             begin
                 select sum(sal) into v_som_percent
                 from (select maandsal*0.1 as sal from medewerkers);
-                select count(mnr) into v_aantal_medewerkers 
+                select count(mnr) into v_aantav_medewerkers 
                 from medewerkers;
-                v_som_vast := v_aantal_medewerkers*co_vast_verh_bedrag;
+                v_som_vast := v_aantav_medewerkers*lco_vast_verh_bedrag;
                 dbms_output.put_line('totaal percent verhoging: ' || v_som_percent || ', totaal vast bedrag verhoging: ' || v_som_vast);
                 if v_som_vast <= v_som_percent then 
                     dbms_output.put_line('Iedereen 80 euro verhoging is voordeliger voor werkgever, dit wordt doorgevoerd.');
                     update medewerkers
-                    set maandsal = maandsal + co_vast_verh_bedrag;
+                    set maandsal = maandsal + lco_vast_verh_bedrag;
                 else
                     dbms_output.put_line('Iedereen 10% salaris verhoging is voordeliger voor werkgever, dit wordt doorgevoerd.');
                     update medewerkers
@@ -165,7 +167,7 @@ begin
                 v_sqldrop_log_tabel varchar2(1000);
                 v_sqlins_log_tabel varchar2(1000);
                 v_som_maandsal pls_integer;
-                v_tabel_bestaat pls_integer;
+                v_tabev_bestaat pls_integer;
             begin
                 v_sqlcre_log_tabel := 
                     'create table log_tabel(
@@ -176,37 +178,52 @@ begin
                 v_sqlins_log_tabel := 
                     'insert into log_tabel(getal, tekst, datum)
                     values (:a, :b, :c)';
-                select count(*) into v_tabel_bestaat 
+                select count(*) into v_tabev_bestaat 
                 from user_tables where table_name = 'LOG_TABEL';
                 
-                if v_tabel_bestaat <= 0 then 
+                if v_tabev_bestaat <= 0 then 
                 execute immediate v_sqlcre_log_tabel;
                 end if;
                 
                 select sum(maandsal) into v_som_maandsal
                 from medewerkers;
-                select count(*) into v_tabel_bestaat 
+                select count(*) into v_tabev_bestaat 
                 from user_tables where table_name = 'LOG_TABEL';
-                if v_tabel_bestaat > 0 then 
+                if v_tabev_bestaat > 0 then 
                     execute immediate v_sqlins_log_tabel using v_som_maandsal, 'gelukt', sysdate;
                     dbms_output.put_line('Tabel LOG_TABEL bestaat of created en waarden ingevoerd, '||
                     'DROP deze tabel aan het einde a.u.b. en update de medewerkers tabel naar zijn originele staat. '||
-                    'Simpelweg run deze opgave opnieuw zonder comments bij de laatste if block '||
-                    'execute immediate "v_sqlupd_log_tabel" en "v_sqldrop_log_tabel"');
-                end if;
+                    'Simpelweg gedaan door de script weer te runnen en 0 te kiezen bij de prompt');
+                end if;             
+            end;
+-- reverse the changes made in opgave 9
+        when 0 then 
+            declare
+                v_som_maandsal pls_integer;
+                v_tabev_bestaat pls_integer;
+                v_sqlupd_log_tabel varchar2(1000);
+                v_sqldrop_log_tabel varchar2(1000);
+            begin
+                select sum(maandsal) into v_som_maandsal
+                from medewerkers;
+                select count(*) into v_tabev_bestaat 
+                from user_tables where table_name = 'LOG_TABEL';
+
                 v_sqlupd_log_tabel:=
                 'update medewerkers set maandsal = maandsal-80'; 
                 v_sqldrop_log_tabel:=
                 'drop table log_tabel purge';
 
-                -- if v_tabel_bestaat > 0 and v_som_maandsal=29995 then 
-                -- execute immediate v_sqlupd_log_tabel;
-                -- execute immediate v_sqldrop_log_tabel;
-                -- dbms_output.put_line('Tabel MEDEWERKERS geupdate naar originele waarden en tabel LOG_TABEL gedropped');
-                -- elsif v_tabel_bestaat > 0 and v_som_maandsal!=29995 then
-                -- execute immediate v_sqldrop_log_tabel;
-                -- dbms_output.put_line('Tabel LOG_TABEL gedropped.');
-                -- end if;
+                if v_tabev_bestaat > 0 and v_som_maandsal=29995 then 
+                    execute immediate v_sqlupd_log_tabel;
+                    execute immediate v_sqldrop_log_tabel;
+                    dbms_output.put_line('Tabel MEDEWERKERS geupdate naar originele waarden en tabel LOG_TABEL gedropped');
+                elsif v_tabev_bestaat > 0 and v_som_maandsal!=29995 then
+                    execute immediate v_sqldrop_log_tabel;
+                    dbms_output.put_line('Tabel LOG_TABEL gedropped.');
+                else
+                    dbms_output.put_line('Alles lijkt correct te zijn, niets wordt veranderd');
+                end if;
             end;
 --
         else
