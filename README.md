@@ -21,7 +21,7 @@ Some of my notes and preparation for the **[Oracle PL/SQL Exam 1Z0-149](https://
 1. Creating Compound, DDL, and Event Database Triggers
 1. Using the PL/SQL Compiler
 1. Managing PL/SQL Code
-1. [Managing Dependencies](./1z0-149_topics/dependencies.md)
+1. [Managing Dependencies](./1z0-149_topics/18_dependencies.md)
 
 # Exercises
 

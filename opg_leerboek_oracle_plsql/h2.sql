@@ -100,12 +100,12 @@ begin
 -- opgave 6 exec in boek schema
         when 6 then 
             declare
-                v_aantav_medewerkers pls_integer;
+                v_aantal_medewerkers pls_integer;
                 lco_bedrag constant pls_integer := 8000;
             begin
-                select count(mnr) into v_aantav_medewerkers from medewerkers;
-                dbms_output.put_line(lco_bedrag||' euro gedeeld door '||v_aantav_medewerkers||
-                    ' medewerkers is '|| trunc(lco_bedrag/v_aantav_medewerkers, 2));
+                select count(mnr) into v_aantal_medewerkers from medewerkers;
+                dbms_output.put_line(lco_bedrag||' euro gedeeld door '||v_aantal_medewerkers||
+                    ' medewerkers is '|| trunc(lco_bedrag/v_aantal_medewerkers, 2));
             end;
 -- opgave 7 warning uncommitted dml, rollback immediately after
         when 7 then 
@@ -140,14 +140,14 @@ begin
             declare
                 v_som_percent pls_integer;
                 v_som_vast pls_integer;
-                v_aantav_medewerkers pls_integer;
+                v_aantal_medewerkers pls_integer;
                 lco_vast_verh_bedrag constant pls_integer := 80;
             begin
                 select sum(sal) into v_som_percent
                 from (select maandsal*0.1 as sal from medewerkers);
-                select count(mnr) into v_aantav_medewerkers 
+                select count(mnr) into v_aantal_medewerkers 
                 from medewerkers;
-                v_som_vast := v_aantav_medewerkers*lco_vast_verh_bedrag;
+                v_som_vast := v_aantal_medewerkers*lco_vast_verh_bedrag;
                 dbms_output.put_line('totaal percent verhoging: ' || v_som_percent || ', totaal vast bedrag verhoging: ' || v_som_vast);
                 if v_som_vast <= v_som_percent then 
                     dbms_output.put_line('Iedereen 80 euro verhoging is voordeliger voor werkgever, dit wordt doorgevoerd.');
