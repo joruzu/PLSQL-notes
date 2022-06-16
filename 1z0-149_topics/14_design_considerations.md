@@ -23,13 +23,13 @@ Standardizing exceptions example: Create a standardized error-handling package t
     end error_pkg;
 
 Standardizing exception handling example: Consider writing a subprogram for common exception handling to:
-- Display errors based on SQLCODE and SQLERRM values for exceptions
+- Display errors based on `SQLCODE` and `SQLERRM` values for exceptions
 - Track run-time errors easily by using parameters in your code to identify:
   - The procedure in which the error occurred
   - The location (line number) of the error
-  - RAISE_APPLICATION_ERROR using stack trace capabilities, with the third argument set to TRUE
+  - `RAISE_APPLICATION_ERROR` using stack trace capabilities, with the third argument set to TRUE
 
->Be careful when creating your own standardized exceptions, if you want to standardize existing oracle defined errors you can override the original error messages with your own. e.g. `declare e_fk_err exception; pragma EXCEPTION_INIT (e_fk_err, -02292);` Code -02292 is an existing oracle exception, when using RAISE_APPLICATION_ERROR with only 2 parameters, e.g. `RAISE_APPLICATION_ERROR(-20001, 'error')` the original message will be overwritten with 'error' (because the 3rd parameter defaults to false). Add 3rd parameter as true if you want to keep the original error message: `RAISE_APPLICATION_ERROR(-20001, 'error', true)`
+>Be careful when creating your own standardized exceptions, if you want to standardize existing oracle defined errors you can override the original error messages with your own. e.g. `declare e_fk_err exception; pragma EXCEPTION_INIT (e_fk_err, -02292);` Code -02292 is an existing oracle exception, when using `RAISE_APPLICATION_ERROR` with only 2 parameters, e.g. `RAISE_APPLICATION_ERROR(-20001, 'error')` the original message will be overwritten with 'error' (because the 3rd parameter defaults to false). Add 3rd parameter as true if you want to keep the original error message: `RAISE_APPLICATION_ERROR(-20001, 'error', true)`
 
 ### Standardizing constants
 For programs that use local variables whose values should not change:
@@ -37,7 +37,7 @@ For programs that use local variables whose values should not change:
 - Create one central package specification and place all constants in it
 
 ## ✅Write and call local subprograms
-A local subprogram is a PROCEDURE or FUNCTION defined at the end of the declarative section. e.g.
+A local subprogram is a `PROCEDURE` or `FUNCTION` defined at the end of the declarative section. e.g.
 
     CREATE PROCEDURE employee_sal(p_id number) IS
         v_emp employees%ROWTYPE;
@@ -120,6 +120,7 @@ PL/SQL units and schema object for which you cannot specify an `AUTHID` value be
 
 ## ✅Perform autonomous transactions
 [Autonomous transactions: 6.7](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/static-sql.html#GUID-BC564905-51F4-4ADB-B300-9F15B1AC3099)
+
 [Pragma AUTONOMOUS_TRANSACTION: 13.4](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/AUTONOMOUS_TRANSACTION-pragma.html)
 
 - An **autonomous transaction** is an independent transaction started by another transaction, the main transaction. 
@@ -207,8 +208,11 @@ PL/SQL units and schema object for which you cannot specify an `AUTHID` value be
 
 ## ✅Use NOCOPY hint, PARALLEL ENABLE hint and DETERMINISTIC clause
 [Subprogram parameter aliasing: 8.7.4.1](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/plsql-subprograms.html#GUID-1D93EBAE-406B-45CE-B89F-A456E37415CB)
+
 [Formal parameter NOCOPY: 13.35](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/formal-parameter-declaration.html)
+
 [PARALLEL_ENABLE: 13.47](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/PARALLEL_ENABLE-clause.html#GUID-CFF3C7D3-6438-44C2-9FAF-569F246C37CA)
+
 [DETERMINISTIC: 13.23](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/DETERMINISTIC-clause.html)
 
 ### NOCOPY
@@ -276,4 +280,25 @@ PL/SQL units and schema object for which you cannot specify an `AUTHID` value be
 
 ## ✅Use bulk binding and the RETURNING clause with DML
 [Bulk binding, bulk sql: 12.4](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/plsql-optimization-and-tuning.html#GUID-61D1B533-DBB9-4150-91F9-0A4C9428391E)
+
 [RETURNING INTO: 13.55](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/RETURNING-INTO-clause.html)
+
+### Bulk SQL and Bulk Binding
+- Bulk SQL minimizes the performance overhead of the communication between PL/SQL and SQL
+- PL/SQL features that comprise bulk SQL are the `FORALL` statement and the `BULK COLLECT` clause
+- Assigning values to PL/SQL variables that appear in SQL statements is called **binding**
+- PL/SQL and SQL communicate as follows: To run a `SELECT INTO` or DML statement, the PL/SQL engine sends the query or DML statement to the SQL engine. The SQL engine runs the query or DML statement and returns the result to the PL/SQL engine
+- The `FORALL` statement sends DML statements from PL/SQL to SQL in batches rather than one at a time
+- The `BULK COLLECT` clause returns results from SQL to PL/SQL in batches rather than one at a time
+- If a query or DML statement affects four or more database rows, then bulk SQL can significantly improve performance
+- > Note: You cannot perform bulk SQL on remote tables
+- PL/SQL binding operations fall into these categories:
+  - **In-bind**: binding occurs When an `INSERT, UPDATE, or MERGE` statement stores a PL/SQL or host variable in the database 
+  - **Out-bind**: binding occurs When the `RETURNING INTO` clause of an `INSERT, UPDATE, or DELETE` statement assigns a database value to a PL/SQL or host variable
+  - **`DEFINE`**: binding occurs When a `SELECT` or `FETCH` statement assigns a database value to a PL/SQL or host variable
+- For in-binds and out-binds, bulk SQL uses **bulk binding**; that is, it binds an entire collection of values at once
+- For a collection of n elements, bulk SQL uses a single operation to perform the equivalent of n `SELECT INTO` or DML statements. A query that uses bulk SQL can return any number of rows, without using a `FETCH` statement for each one
+- > Note: Parallel DML is disabled with bulk SQL
+
+**FORALL Statement**
+READ further

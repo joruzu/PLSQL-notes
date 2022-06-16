@@ -64,6 +64,7 @@ You can put whitespace characters between lexical units, whhich could make your 
 
 ## ✅Use built-in SQL functions in PL/SQL and sequences in PL/SQL expressions
 [Expressions, SQL Functions: 2.7](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/plsql-language-fundamentals.html#GUID-42674F8E-55C3-44D5-BA42-47B323CD74F5)
+
 [Sequence currval and nextval in PL/SQL: 7.1.2.1](https://docs.oracle.com/en/database/oracle/oracle-database/21/lnpls/static-sql.html#GUID-68348EB4-62D0-4D86-A056-8BDC0CB50187)
 
 ### Expressions and SQL functions
@@ -93,8 +94,8 @@ You can put whitespace characters between lexical units, whhich could make your 
 - to control the order of evaluation, enclose operations in parentheses. When parentheses are nested, the most deeply nested operations are evaluated first
 
 #### Logical operators
-- the logical operators AND, OR, and NOT follow a tri-state logic. AND an OR are binary, NOT is unary
-- AND returns true if and only if both operands are true, OR returns true if either op is true, NOT returns the opposite of its operand
+- the logical operators `AND, OR, and NOT` follow a tri-state logic. `AND` an `OR` are binary, `NOT` is unary
+- `AND` returns true if and only if both operands are true, `OR` returns true if either op is true, `NOT` returns the opposite of its operand
 
 #### Short-circuit evaluation
 - when evaluating logical expression, plsql uses short-circuit evaluation, that is, plsql stops evaluating the expression as soon as it can determine the result.
@@ -103,8 +104,8 @@ e.g. declare zero integer := 0; begin if (zero = 0) or (10 / zero < 5) then ... 
 in above example the left operand is true so plsql does not evaluate the right operand in if statement, so no divide by zero error
 
 #### Comparison operators
-- comparison operators compare one expression to another. The result is always either TRUE, FALSE, or NULL. 
-- if the value of one expression is NULL, then the result of the comparison is also NULL. 
+- comparison operators compare one expression to another. The result is always either `TRUE, FALSE, or NULL`. 
+- if the value of one expression is `NULL`, then the result of the comparison is also `NULL`. 
 - comparison operators are:
   - IS [NOT] NULL
   - relational operators: =, <>, <, >, <=, >=
@@ -113,15 +114,15 @@ in above example the left operand is true so plsql does not evaluate the right o
   - IN
 
 #### Boolean expressions
-- a BOOLEAN expression is an expression that returns a BOOLEAN value: TRUE, FALSE, or NULL. 
-- the simplest BOOLEAN expression is a BOOLEAN literal, constant, or variable. The following are also BOOLEAN expressions: 
+- a `BOOLEAN` expression is an expression that returns a `BOOLEAN` value: `TRUE, FALSE, or NULL`. 
+- the simplest `BOOLEAN` expression is a `BOOLEAN` literal, constant, or variable. The following are also `BOOLEAN` expressions: 
 
       NOT boolean_expression
       boolean_expression relational_operator boolean_expression
       boolean_expression { AND | OR } boolean_expression
 
-- typically you use BOOLEAN expression as condition in control statements and in WHERE cluases of DML statements
-- you can use a BOOLEAN variable itself as a condition, you need not compare it to the value TRUE or FALSE
+- typically you use `BOOLEAN` expression as condition in control statements and in `WHERE` cluases of DML statements
+- you can use a `BOOLEAN` variable itself as a condition, you need not compare it to the value `TRUE` or `FALSE`
 
 #### Case expressions
 - simple case expression:
@@ -180,6 +181,7 @@ In plsql expressions you can use all sql functions except:
 
 ## ✅Describe when implicit conversions take place and when explicit conversions have to be dealt with
 [Datatype conversion 10g](https://docs.oracle.com/cd/B19306_01/appdev.102/b14261/datatypes.htm#i9118)
+
 [Datatype conversion oreilly](https://www.oreilly.com/library/view/oracle-plsql-programming/0596003811/ch07s05.html)
 
 ### Explicit conversion
@@ -197,13 +199,14 @@ Implicit conversions plsql can do
   - the pls_integer and binary_integer datatypes are identical so no conversion takes place
   - the tables lists only types that have different representations. Types that have the same representation, such as clob and nclob, char and nchar, and varchar2 and nvarchar2 can be substituted for each other
   - you can implicitly convert between clob and nclob, but be careful because this can be an expensive operation
-  - TIMESTAMP, TIMESTAMP WITH TIME ZONE, TIMESTAMP WITH LOCAL TIME ZONE, INTERVAL DAY TO SECOND, and INTERVAL YEAR TO MONTH can all be converted using the same rules as the DATE type. However, because of their different internal representations, these types cannot always be converted to each other
-  - It is your responsibility to ensure that values are convertible. For instance, PL/SQL can convert the CHAR value '02-JUN-92' to a DATE value but cannot convert the CHAR value 'YESTERDAY' to a DATE value. Similarly, PL/SQL cannot convert a VARCHAR2 value containing alphabetic characters to a NUMBER value
+  - `TIMESTAMP, TIMESTAMP WITH TIME ZONE, TIMESTAMP WITH LOCAL TIME ZONE, INTERVAL DAY TO SECOND, and INTERVAL YEAR TO MONTH` can all be converted using the same rules as the `DATE` type. However, because of their different internal representations, these types cannot always be converted to each other
+  - It is your responsibility to ensure that values are convertible. For instance, PL/SQL can convert the CHAR value '02-JUN-92' to a `DATE` value but cannot convert the `CHAR` value 'YESTERDAY' to a `DATE` value. Similarly, PL/SQL cannot convert a `VARCHAR2` value containing alphabetic characters to a `NUMBER` value
 - relying on implicit datatype conversions is a poor programming practice because they can be slower and teh conversion rules might change in later software releases
 - implicit conversions are context-sensitive and not always predictable. For best reliability and maintainability, use datatype conversion functions
 
 ## ✅Write nested blocks and qualify variables with labels
 [Block](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/block.html#GUID-9ACEB9ED-567E-4E1A-A16A-B8B35214FC9D)
+
 [Scope and visibility: 2.5](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/plsql-language-fundamentals.html#GUID-2FC17012-FC99-4614-90DD-ADC99F2EDBE9)
 
 ### Block
@@ -289,6 +292,7 @@ Implicit conversions plsql can do
 
 ## ✅Write readable code with appropriate indentation
 [Coding style](https://trivadis.github.io/plsql-and-sql-coding-guidelines/v4.0/3-coding-style/coding-style/)
+
 [Indentation standards](http://www.dba-oracle.com/t_plsql_indentation_standards.htm)
 
 READ

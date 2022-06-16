@@ -45,11 +45,17 @@ the pragma affects every invocation of the specified subprogram in that statemen
 
 ## ✅Use the PL/SQL compiler initialization parameters
 [PL/SQL compilation parameters: 1.3.2](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/overview.html#GUID-DF63BC59-22C2-4BA8-9240-F74D505D5102)
+
 [PLSCOPE_SETTINGS](https://docs.oracle.com/en/database/oracle/oracle-database/12.2/refrn/PLSCOPE_SETTINGS.html#GUID-E420D72D-4199-4444-9D9A-080CBEA09DD4)
+
 [Using PL/Scope: READ ONLY](https://docs.oracle.com/en/database/oracle/oracle-database/12.2/adfns/plscope.html#GUID-24109CB5-7BB9-48B2-AD7A-39458AA13C0C)
+
 [PLSQL_CCFLAGS](https://docs.oracle.com/en/database/oracle/oracle-database/19/refrn/PLSQL_CCFLAGS.html#GUID-E27CC5B2-7D1C-4EE1-81B1-1F2D51EA99CE)
+
 [PLSQL_CODE_TYPE](https://docs.oracle.com/en/database/oracle/oracle-database/19/refrn/PLSQL_CODE_TYPE.html#GUID-19CE54C7-6B2A-4F3E-92C5-D30AFCD01E3F)
+
 [PLSQL_OPTIMIZE_LEVEL](https://docs.oracle.com/en/database/oracle/oracle-database/19/refrn/PLSQL_OPTIMIZE_LEVEL.html#GUID-364B752A-4335-468C-B4BA-AAC32D75385A)
+
 [Compiling units for native execution: 12.10](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/plsql-optimization-and-tuning.html#GUID-7C4557E7-4C35-4CAB-A95D-CB96BDC6D487)
 
 ### Summary of the compilation parameters:
@@ -198,7 +204,9 @@ Using `ALTER program_unit` to recompile it with different compilation parameters
 
 ## ✅Use the PL/SQL compile time warnings
 [Compile-time warnings: 11.1](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/plsql-error-handling.html#GUID-3311B813-3185-4751-A3A6-309B93973366)
+
 [DBMS_WARNING](https://docs.oracle.com/en/database/oracle/oracle-database/21/arpls/DBMS_WARNING.html)
+
 [PLSQL_WARNINGS](https://docs.oracle.com/en/database/oracle/oracle-database/19/refrn/PLSQL_WARNINGS.html#GUID-B28D6852-61DB-47E4-B681-C185ABF1BF21)
 
 ### Compile-Time Warnings

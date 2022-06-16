@@ -1,8 +1,12 @@
 # 18 Managing Dependencies
 [Understanding Schema Object Dependency - Oracle 19c Database Development Guide](https://docs.oracle.com/en/database/oracle/oracle-database/19/adfns/schema-object-dependency.html#GUID-488AF7D9-EDEB-4589-A503-FDE31CE55B60)
+
 [\*_DEPENDENCIES: READ ONLY](https://docs.oracle.com/en/database/oracle/oracle-database/19/refrn/ALL_DEPENDENCIES.html#GUID-F9EA7DFB-5471-4B07-BDEF-FDE5DF57D1F4)
+
 [DEPTREE: READ ONLY](https://docs.oracle.com/en/database/oracle/oracle-database/19/refrn/DEPTREE.html#GUID-92B4E327-4C55-4E34-B9BB-6F279656960B)
+
 [IDEPTREE: READ ONLY](https://docs.oracle.com/en/database/oracle/oracle-database/19/refrn/IDEPTREE.html#GUID-B963715F-C7E0-44DE-9C76-8EE6DBE45AAE)
+
 [\*_OBJECTS: READ ONLY](https://docs.oracle.com/en/database/oracle/oracle-database/19/refrn/ALL_OBJECTS.html#GUID-AA6DEF8B-F04F-482A-8440-DBCB18F6C976)
 
 ### Overview of Schema Object Dependency
@@ -118,3 +122,93 @@ Program units or objects may be invalidated if a change is made to the structure
 - Oracle Database uses different mechanisms to manage remote dependencies, depending on the objects involved
 
 **Dependencies Among Local and Remote Database Procedures**
+- Dependencies among stored procedures (including functions, packages, and triggers) in a distributed database system are managed using either time-stamp checking or signature checking
+- The dynamic initialization parameter `REMOTE_DEPENDENCIES_MODE` determines whether time stamps or signatures govern remote dependencies
+
+**Dependencies Among Other Remote Objects**
+- Oracle Database does not manage dependencies among remote schema objects other than local-procedure-to-remote-procedure dependencies
+- For example, assume that a local view is created and defined by a query that references a remote table. Also assume that a local procedure includes a SQL statement that references the same remote table. Later, the definition of the table is altered
+- Therefore, the local view and procedure are never invalidated, even if the view or procedure is used after the table is altered, and even if the view or procedure now returns errors when used. In this case, the view or procedure must be altered manually so that errors are not returned. In such cases, lack of dependency management is preferable to unnecessary recompilations of dependent objects
+
+**Dependencies of Applications**
+- Code in database applications can reference objects in the connected database. For example, Oracle Call Interface (OCI) and precompiler applications can submit anonymous PL/SQL blocks. Triggers in Oracle Forms applications can reference a schema object
+- Such applications are dependent on the schema objects they reference. Dependency management techniques vary, depending on the development environment. Oracle Database does not automatically track application dependencies
+
+### Remote Procedure Call (RPC) Dependency Management
+- Remote procedure call (RPC) dependency management occurs when a local stored procedure calls a remote procedure in a distributed database system
+- The dynamic initialization parameter `REMOTE_DEPENDENCIES_MODE` controls the dependency mode. The choice is either time-stamp dependency mode or RPC-signature dependency mode
+
+**Time-Stamp Dependency Mode**
+- Whenever a procedure is compiled, its **time stamp** is recorded in the data dictionary. The time stamp shows when the procedure was created, altered, or replaced
+- A compiled procedure contains information about each remote procedure that it calls, including the schema, package name, procedure name, and time stamp of the remote procedure
+- In time-stamp dependency mode, when a local stored procedure calls a remote procedure, Oracle Database compares the time stamp that the local procedure has for the remote procedure to the current time stamp of the remote procedure. If the two time stamps match, both the local and remote procedures run. Neither is recompiled
+- If the two time stamps do not match, the local procedure is invalidated and an error is returned to the calling environment. All other local procedures that depend on the remote procedure with the new time stamp are also invalidated
+- Time stamp comparison occurs when a statement in the body of the local procedure calls the remote procedure. Therefore, statements in the local procedure that precede the invalid call might run successfully. Statements after the invalid call do not run. The local procedure must be recompiled
+- If DML statements precede the invalid call, they roll back only if they and the invalid call are in the same PL/SQL block
+- The disadvantages of time-stamp dependency mode are:
+  - Dependent objects across the network are often recompiled unnecessarily, degrading performance
+  - If the client-side application uses PL/SQL, this mode can cause situations that prevent the application from running on the client side
+
+**RPC-Signature Dependency Mode**
+- Oracle Database provides **RPC signatures** to handle remote dependencies. RPC signatures do not affect local dependencies, because recompilation is always possible in the local environment
+- An RPC signature is associated with each compiled stored program unit. It identifies the unit by these characteristics:
+  - Name
+  - Number of parameters
+  - Data type class of each parameter
+  - Mode of each parameter
+  - Data type class of return value (for a function)
+- An RPC signature changes only when at least one of the preceding characteristics changes
+- > Note: An RPC signature does not include `DETERMINISTIC`, `PARALLEL_ENABLE`, or purity information. If these settings change for a function on remote system, optimizations based on them are not automatically reconsidered. Therefore, calling the remote function in a SQL statement or using it in a function-based index might cause incorrect query results
+- A compiled program unit contains the RPC signature of each remote procedure that it calls (and the schema, package name, procedure name, and time stamp of the remote procedure)
+- In RPC-signature dependency mode, when a local program unit calls a subprogram in a remote program unit, the database ignores time-stamp mismatches and compares the RPC signature that the local unit has for the remote subprogram to the current RPC signature of the remote subprogram. If the RPC signatures match, the call succeeds; otherwise, the database returns an error to the local unit, and the local unit is invalidated
+
+- **Changing Names and Default Values of Parameters**
+  - Changing the name or default value of a subprogram parameter does not change the RPC signature of the subprogram
+  - However, if your application requires that callers get the new default value, you must recompile the called procedure
+- **Changing Specification of Parameter Mode IN**
+  - Because the subprogram parameter mode IN is the default, you can specify it either implicitly or explicitly
+  - Changing its specification from implicit to explicit, or the reverse, does not change the RPC signature of the subprogram
+- **Changing Subprogram Body**
+  - Changing the body of a subprogram does not change the RPC signature of the subprogram
+- **Changing Data Type Classes of Parameters**
+  - Changing the data type of a parameter to another data type in the same class does not change the RPC signature, but changing the data type to a data type in another class does
+- **Changing Package Types**
+  - Changing the name of a package type, or the names of its internal components, does not change the RPC signature of the package
+
+**Controlling Dependency Mode**
+- The dynamic initialization parameter `REMOTE_DEPENDENCIES_MODE` controls the dependency mode
+- If the initialization parameter file contains this specification, then only time stamps are used to resolve dependencies (if this is not explicitly overridden dynamically):
+
+      REMOTE_DEPENDENCIES_MODE = TIMESTAMP
+- If the initialization parameter file contains this parameter specification, then RPC signatures are used to resolve dependencies (if this not explicitly overridden dynamically):
+
+      REMOTE_DEPENDENCIES_MODE = SIGNATURE
+- You can alter the mode dynamically by using the DDL statements.
+
+      ALTER SESSION SET REMOTE_DEPENDENCIES_MODE = {SIGNATURE | TIMESTAMP}
+      ALTER SYSTEM SET REMOTE_DEPENDENCIES_MODE = {SIGNATURE | TIMESTAMP}
+- If the `REMOTE_DEPENDENCIES_MODE` parameter is not specified, either in the init.ora parameter file or using the `ALTER SESSION` or `ALTER SYSTEM` statements, `TIMESTAMP` is the default value
+- Therefore, unless you explicitly use the `REMOTE_DEPENDENCIES_MODE` parameter, or the appropriate DDL statement, your server is operating using the time-stamp dependency mode
+- When you use `REMOTE_DEPENDENCIES_MODE=SIGNATURE`: 
+  - If you change the initial value of a parameter of a remote procedure, then the local procedure calling the remote procedure is not invalidated. If the call to the remote procedure does not supply the parameter, then the initial value is used. In this case, because invalidation and recompilation does not automatically occur, the old initial value is used. To see the new initial values, recompile the calling procedure manually
+  - If you add an overloaded procedure in a package (a procedure with the same name as an existing one), then local procedures that call the remote procedure are not invalidated. If it turns out that this overloading results in a rebinding of existing calls from the local procedure under the time-stamp mode, then this rebinding does not happen under the RPC signature mode, because the local procedure does not get invalidated. You must recompile the local procedure manually to achieve the rebinding
+  - If the types of parameters of an existing package procedure are changed so that the new types have the same shape as the old ones, then the local calling procedure is not invalidated or recompiled automatically. You must recompile the calling procedure manually to get the semantics of the new type
+
+- **Dependency Resolution**
+  - When `REMOTE_DEPENDENCIES_MODE = TIMESTAMP` (the default value), dependencies among program units are handled by comparing time stamps at runtime
+  - If the time stamp of a called remote procedure does not match the time stamp of the called procedure, then the calling (dependent) unit is invalidated and must be recompiled. In this case, if there is no local PL/SQL compiler, then the calling application cannot proceed
+  - In the time-stamp dependency mode, RPC signatures are not compared. If there is a local PL/SQL compiler, then recompilation happens automatically when the calling procedure is run
+  - When `REMOTE_DEPENDENCIES_MODE = SIGNATURE`, the recorded time stamp in the calling unit is first compared to the current time stamp in the called remote unit. If they match, then the call proceeds. If the time stamps do not match, then the RPC signature of the called remote subprogram, as recorded in the calling subprogram, is compared with the current RPC signature of the called subprogram. If they do not match, then an error is returned to the calling session
+
+- **Suggestions for Managing Dependencies**
+  - Server-side PL/SQL users can set the parameter to `TIMESTAMP` (or let it default to that) to get the time-stamp dependency mode
+  - Server-side PL/SQL users can use RPC-signature dependency mode if they have a distributed system and they want to avoid possible unnecessary recompilations
+  - Client-side PL/SQL users must set the parameter to `SIGNATURE`. This allows:
+    - Installation of applications at client sites without recompiling procedures
+    - Ability to upgrade the server, without encountering time stamp mismatches
+  - When using RPC signature mode on the server side, add procedures to the end of the procedure (or function) declarations in a package specification. Adding a procedure in the middle of the list of declarations can cause unnecessary invalidation and recompilation of dependent procedures
+
+### Shared SQL Dependency Management
+- In addition to managing dependencies among schema objects, Oracle Database also manages dependencies of each shared SQL area in the shared pool
+- If a table, view, synonym, or sequence is created, altered, or dropped, or a procedure or package specification is recompiled, all dependent shared SQL areas are invalidated
+- At a subsequent execution of the cursor that corresponds to an invalidated shared SQL area, Oracle Database reparses the SQL statement to regenerate the shared SQL area

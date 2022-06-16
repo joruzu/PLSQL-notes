@@ -50,6 +50,7 @@
 
 ## ✅Declare and control explicit cursors, use simple loops and cursor FOR loops to fetch data
 [Explicit cursors: 6.2.2 - 6.2.2.5, 6.2.2.7](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/static-sql.html#GUID-89E0242F-42AC-4B21-9DF1-ACD6F4FC03B9)
+
 [Control cursors and cursor FOR LOOP: 6.3.2 - 6.3.4](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/static-sql.html#GUID-25917214-FD91-499D-AB39-CE21484AB167)
 
 ### Explicit cursors
@@ -180,7 +181,9 @@ e.g. `FOR rec IN (select_statement) LOOP ...`
 
 ## ✅Declare and use cursors with parameters
 [Explicit cursors accept parameters: 6.2.2.6](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/static-sql.html#GUID-2DEFB351-F8B6-453C-AA74-86B5B99C3B20)
+
 [Cursor variables: 6.4](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/static-sql.html#GUID-4A6E054A-4002-418D-A1CA-DE849CD7E6D5)
+
 [Cursor expression: 6.5](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/static-sql.html#GUID-77FF2850-F338-4C77-9577-0FE3399D39BA)
 
 ### Cursors with parameters

@@ -2,8 +2,11 @@
 
 ## ✅Describe the execution flow of SQL statements
 [SQL Processing 19c](https://docs.oracle.com/en/database/oracle/oracle-database/19/tgsql/sql-processing.html#GUID-B3415175-41F2-4EBB-95CF-5F8B5C39E927)
+
 [DBMS_SQL execution flow](https://docs.oracle.com/en/database/oracle/oracle-database/19/arpls/DBMS_SQL.html#GUID-BF7B8D70-6A09-4E04-A216-F8952C347BAF)
+
 [SQL Processing Oracle7: READ ONLY](https://docs.oracle.com/cd/A57673_01/DOC/server/doc/A48506/sqlconce.htm)
+
 [SQL execution Burleson: READ ONLY](http://www.dba-oracle.com/t_sql_exeution_steps.htm)
 
 ### SQL processing 19c
@@ -144,9 +147,13 @@
 
 ## ✅Use Native Dynamic SQL (NDS)
 [Dynamic sql overview: 7 - 7.1](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/dynamic-sql.html#GUID-7E2F596F-9CA3-4DC8-8333-0C117962DB73)
+
 [NDS: 7.2](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/dynamic-sql.html#GUID-D2613968-6660-4AA2-9057-28E425A3040D)
+
 [DBMS_SQL package: 7.3](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/dynamic-sql.html#GUID-4E1FD47B-7E1A-42E9-9792-210F13C75A1B)
+
 [DBMS_SQL package reference: READ ONLY](https://docs.oracle.com/en/database/oracle/oracle-database/19/arpls/DBMS_SQL.html#GUID-C96D5BAA-29A9-4AB5-A69E-E31228ECC9E9)
+
 [SQL injection: 7.4 READ ONLY](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/dynamic-sql.html#GUID-1E31057E-057F-4A53-B1DD-8BC2C337AA2C)
 
 ### Overview

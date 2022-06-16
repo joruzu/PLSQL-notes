@@ -166,9 +166,13 @@ When invoking a subprogram, you can specify the actual parameters using either p
 
 ## ✅Work with procedures (create, invoke and remove procedures)
 [Forward declaration: 8.6](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/plsql-subprograms.html#GUID-117C2D94-EB7C-4A9E-A080-99F4829D69B0)
+
 [Procedure declaration and definition: 13.50](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/procedure-declaration-and-definition.html#GUID-9A48D7CE-3720-46A4-B5CA-C2250CA86AF2)
+
 [CREATE PROCEDURE](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/CREATE-PROCEDURE-statement.html#GUID-5F84DB47-B5BE-4292-848F-756BF365EC54)
+
 [ALTER PROCEDURE](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/ALTER-PROCEDURE-statement.html#GUID-17EAA51A-308B-4DA3-856C-DA5C4480AAA9)
+
 [DROP PROCEDURE](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/DROP-PROCEDURE-statement.html#GUID-A66E96E6-A582-4A59-B97E-8E6EA52EC292)
 
 ### Forward declaration

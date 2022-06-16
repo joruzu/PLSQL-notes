@@ -2,9 +2,13 @@
 
 ## ✅Differentiate between anonymous blocks and subprograms
 [Subprogram overview: 8](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/plsql-subprograms.html#GUID-13BEBBEC-02D4-48E8-A059-DFEAC4751A3B)
+
 [Types of subprogram: 8.2](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/plsql-subprograms.html#GUID-E03F512B-1A30-43B4-8DCA-64DA68AE7CE4)
+
 [Subprogram properties: 8.4](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/plsql-subprograms.html#GUID-F4B0F4E1-90F4-4432-8DCF-3C93D0376E88)
+
 [Subprogram parts: 8.5](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/plsql-subprograms.html#GUID-855AA11F-32CB-4CAD-9255-BE92A6821487)
+
 [Side effects: 8.11](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/plsql-subprograms.html#GUID-6C6A828F-8FA0-4278-97D2-6D5649A66A9A)
 
 ### Overview
@@ -67,6 +71,7 @@
 
 ## ✅Create a simple procedure and invoke it from an anonymous block
 [Subprogram invocation: 8.3](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/plsql-subprograms.html#GUID-C04B6BF9-1B19-42F9-82D8-CA137E97A024)
+
 [Subprogram invocation resolution: 8.8](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/plsql-subprograms.html#GUID-A7D51201-1711-4F33-827F-70042700801F)
 
 ### Subprogram invocations
@@ -88,8 +93,11 @@
 
 ## ✅Identify benefits of subprograms
 [Reasons to use subprograms: 8.1](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/plsql-subprograms.html#GUID-56B4253C-6113-4C97-A0D2-1488B6526076)
+
 [Overloading: 8.9](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/plsql-subprograms.html#GUID-47D5A50E-7AAF-4C80-A06A-37593EA2526A)
+
 [Recursion: 8.10](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/plsql-subprograms.html#GUID-E093EF16-0477-44B4-B3E2-37D7CEF4F25C)
+
 [External subprograms: 8.15](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/plsql-subprograms.html#GUID-96B5DE2B-D809-4296-9CDE-B317B81895F8)
 
 ### Reasons to use subprograms

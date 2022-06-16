@@ -14,6 +14,7 @@
 
 ## ✅Create user-defined PL/SQL records
 [Record variables: 5.12 - 5.12.3](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/plsql-collections-and-records.html#GUID-75875E26-FC7B-4513-A5E2-EDA26F1D67B1)
+
 [Working with records: 5.13 - 5.17](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/plsql-collections-and-records.html#GUID-794AD0D6-2D97-4C4A-B7DA-6126025EF2A5)
 
 ### Record variables
@@ -105,6 +106,7 @@ See Chapter 1
 
 ## ✅Create an INDEX BY table and INDEX BY table of records
 [Collection types: 5.1](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/plsql-collections-and-records.html#GUID-7E9034D5-0D33-43A1-9012-918350FE148C)
+
 [Associative arrays: 5.2](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/plsql-collections-and-records.html#GUID-8060F01F-B53B-48D4-9239-7EA8461C2170)
 
 ### Collection types
@@ -204,6 +206,7 @@ See Chapter 1
 
 ## ✅Describe the differences among records, collections, and collections of records
 [Varray: 5.3](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/plsql-collections-and-records.html#GUID-E932FC04-C7AD-4562-9555-8BA05446C0B8)
+
 [Nested table: 5.4](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/plsql-collections-and-records.html#GUID-5ADB7EE2-71F6-4172-ACD8-FFDCF2787A37)
 
 ### Varrays (variable-size arrays)
@@ -247,11 +250,17 @@ See Chapter 1
 
 ## ✅Initialize collections and records
 [Collection constructors: 5.5](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/plsql-collections-and-records.html#GUID-92967CC1-481E-472A-BB4C-90C60F75296D)
+
 [Qualified expressions: 5.6](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/plsql-collections-and-records.html#GUID-4B379569-4068-4DB1-9D69-E706F4AC5758)
+
 [Assign values to collection variables: 5.7](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/plsql-collections-and-records.html#GUID-7836EEC3-2642-4CF8-AA50-81034855119D)
+
 [Collection comparison: 5.9](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/plsql-collections-and-records.html#GUID-68EC8EF3-E351-4917-8C7A-5103CDB2C01B)
+
 [Collection methods: 5.10](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/plsql-collections-and-records.html#GUID-0452FBDC-D9C1-486E-B432-49AF84743A9F)
+
 [Collection types defined in package spec: 5.11](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/plsql-collections-and-records.html#GUID-7C84EBD2-D0A5-4126-8EB7-FF9243EE5B47)
+
 [Iterating through collections LiveSQL examples](https://livesql.oracle.com/apex/livesql/file/content_LYWUAKMO1ZUWCIOGLM6ESDCLO.html)
 
 ### Collection constructors

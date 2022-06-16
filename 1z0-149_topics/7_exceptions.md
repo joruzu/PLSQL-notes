@@ -128,11 +128,17 @@ Careful with this one, if you try it out you will see that a rollback still does
 
 ## ✅Handle different types of exceptions (internally defined exceptions, predefined exceptions and user-defined exceptions)
 [Internally defined: 11.3](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/plsql-error-handling.html#GUID-4F0787E6-ABCA-4860-A28E-435C7FE15154)
+
 [Predefined: 11.4](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/plsql-error-handling.html#GUID-8C327B4A-71FA-4CFB-8BC9-4550A23734D6)
+
 [User-defined: 11.5](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/plsql-error-handling.html#GUID-8844A6D8-FE6F-4DFF-B449-59AB076316C1)
+
 [Redeclared predefined: 11.6](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/plsql-error-handling.html#GUID-C98B60A9-3931-4F8D-BE13-205A1779596D)
+
 [Raising exceptions: 11.7](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/plsql-error-handling.html#GUID-66346B68-7A18-438C-951B-A60F970D98B8)
+
 [Error codes and messages: 11.10](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/plsql-error-handling.html#GUID-7E0CDD98-D31C-4745-B819-B5C5E1DF90A8)
+
 [After exception handling: 11.11 - 11.12](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/plsql-error-handling.html#GUID-E63131E7-4AE6-4C47-8D21-5EC1F6D3AA68)
 
 ### Internally defined exception

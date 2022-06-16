@@ -391,7 +391,9 @@
 
 ## ✅Create triggers on system events
 [CREATE TRIGGER statement](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/CREATE-TRIGGER-statement.html#GUID-AF9E33F1-64D1-4382-A6A4-EC33C36F237B)
+
 [ALTER TRIGGER statement](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/ALTER-TRIGGER-statement.html#GUID-BC319647-2D94-46D1-BF69-16CDFB507725)
+
 [DROP TRIGGER statement](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/DROP-TRIGGER-statement.html#GUID-C664FDA9-656B-49D4-A86D-D08B615137E9)
 
 ### CREATE TRIGGER statement

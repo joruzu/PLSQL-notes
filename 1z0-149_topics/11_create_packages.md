@@ -2,6 +2,7 @@
 
 ## ✅Identify the benefits and the components of packages
 [What is package?: 10.1](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/plsql-packages.html#GUID-8D02540E-C697-4498-9261-848F6D4E5CB5)
+
 [Reasons to use packages: 10.2](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/plsql-packages.html#GUID-F2763E50-C2C6-4A4B-AEFA-103EB8529FD5)
 
 ### What is a package?
@@ -51,14 +52,23 @@ Packages support the development and maintenance of reliable, reusable code with
 
 ## ✅Work with packages (create package specification and body, invoke package subprograms, remove a package and display package information)
 [Package specification: 10.3](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/plsql-packages.html#GUID-85E86008-3460-4596-B43A-13D54D6E04C7)
+
 [Package body: 10.4](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/plsql-packages.html#GUID-49A935CE-825D-4FEA-BF2D-89F87EA9C750)
+
 [Instantiation and initialization: 10.5](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/plsql-packages.html#GUID-5946DBAF-D010-40E4-B119-CA76FA5AFA3A)
+
 [Package state: 10.6](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/plsql-packages.html#GUID-08E1FC04-9EF3-4396-83C6-4812F8ECABF4)
+
 [Serially reusable: 10.7](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/plsql-packages.html#GUID-001EF960-7491-411B-A5F3-D1260A45794B)
+
 [Writing guidelines: 10.8](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/plsql-packages.html#GUID-4C39BAEB-9F20-4620-B5B0-8DDDBF783AB2)
+
 [CREATE PACKAGE](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/CREATE-PACKAGE-statement.html#GUID-03A70A54-90FF-4293-B6B8-F0B35E184AC5)
+
 [CREATE PACKAGE BODY](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/CREATE-PACKAGE-BODY-statement.html#GUID-68526FF2-96A1-4F14-A10B-4DD3E1CD80BE)
+
 [ALTER PACKAGE](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/ALTER-PACKAGE-statement.html#GUID-61273667-8D8F-4E79-9D81-072CFFE3A7F1)
+
 [DROP PACKAGE](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/DROP-PACKAGE-statement.html#GUID-91CB731B-471A-409B-A22B-4C1AF9E5903B)
 
 ### Package specification
@@ -314,6 +324,7 @@ Packages support the development and maintenance of reliable, reusable code with
 
 ## ✅Overload package subprograms and use forward declarations
 [Forward declaration: 8.6](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/plsql-subprograms.html#GUID-117C2D94-EB7C-4A9E-A080-99F4829D69B0)
+
 [Overloaded subprograms: 8.9](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/plsql-subprograms.html#GUID-47D5A50E-7AAF-4C80-A06A-37593EA2526A)
 
 ### Package subprogram overloading

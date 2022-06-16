@@ -2,9 +2,13 @@
 
 ## ✅Create PL/SQL executable blocks using DML and transaction control statements
 [DML, static SQL: 6 - 6.1.1](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/static-sql.html#GUID-A2E4086F-94DC-4CC7-9E4B-30285BEC3313)
+
 [INSERT extension](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/INSERT-statement-extension.html#GUID-D81224C4-06DE-4635-A850-41D29D4A8E1B)
+
 [UPDATE extension](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/UPDATE-statement-extensions.html#GUID-8FA29ACC-5E0F-4BE1-BC33-2B882C87E36D)
+
 [DELETE extension](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/DELETE-statement-extension.html#GUID-9BEEC5E0-EF77-4E88-9DD4-B9BA1EABABCF)
+
 [Transaction processing and control: 6.6 - 6.6.6.1](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/static-sql.html#GUID-218080C2-A7C5-42CC-B34E-A08A0C9341C1)
 
 ### Static SQL
@@ -86,6 +90,7 @@
 
 ## ✅Make use of the INTO clause to hold the values returned by a SQL statement
 [Processing query result with SELECT INTO: 6.3.1](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/static-sql.html#GUID-6BEF411F-DCA9-4777-BE1F-6740B7C9B647)
+
 [SELECT INTO syntax](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/SELECT-INTO-statement.html#GUID-6E14E04D-4344-45F3-BE80-979DD26C7A90)
 
 - using an implicit cursor, the `SELECT INTO` statement retrieves values from one or more database tables (as the sql `SELECT` statement does) and stores them in varaibles (which the sql `SELECT` statement does not do)

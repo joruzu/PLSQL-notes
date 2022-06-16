@@ -2,51 +2,48 @@
 
 ## ✅Recognize valid and invalid identifiers
 [Indentifiers: 2.2.2](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/plsql-language-fundamentals.html#GUID-1033B8AE-B6C9-44DB-AFB0-D71A2635BD9E)
+
 [Reserved words and keywords: D](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/plsql-reserved-words-keywords.html#GUID-9BAA3A99-41B1-45CB-A91E-1E482BC1F927)
+
 [References to identifiers: 2.4](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/plsql-language-fundamentals.html#GUID-397990B7-9C45-4D37-A8A4-478FC116E898)
 
-#### Identifiers
+### Identifiers
 Identifiers name PL/SQL elements, which include:
 -|-|-|-|-
 -|-|-|-|-
 constants|cursors|exceptions|keywords|types
 labels|packages|reserved keywords|subprograms|variables
 
-Every character in an identifier, alphabetic or not, is significant. e.g. 'last_name' and 'lastname' are different.
-Except in the case of quoted identifiers, PL/SQL is case-insensitive for identifiers, e.g. lastname, LastName, and LASTNAME are the same.
-
-**Reserved words** and **keywords** are identifiers that have special meaning in PL/SQL.
-You cannot use reserved words as user-defined identifiers but you can use them as quoted user-defined identifiers, however this is not recommended.
-You can use keywords as ordinary user-defined identifiers, but it is not recommended.
-
-**Predefined identifiers** are declared in the package STANDARD
+- Every character in an identifier, alphabetic or not, is significant. e.g. 'last_name' and 'lastname' are different.
+- Except in the case of quoted identifiers, PL/SQL is case-insensitive for identifiers, e.g. lastname, LastName, and LASTNAME are the same.
+- **Reserved words** and **keywords** are identifiers that have special meaning in PL/SQL.
+  - You cannot use reserved words as user-defined identifiers but you can use them as quoted user-defined identifiers, however this is not recommended.
+  - You can use keywords as ordinary user-defined identifiers, but it is not recommended.
+- **Predefined identifiers** are declared in the package `STANDARD`
 For a list of these identifiers, connect as a DBA and query:
-`select type_name from all_types where predefined='YES';`
 
-A **user-defined** identifier is:
-- composed of characters from the database character set
-- either ordinary or quoted 
+      select type_name from all_types where predefined='YES';
 
-An ordinary user-defined identifier:
-- begins with a letter
-- can include letters, digits, and these symbols:
-  - dollar sign ($)
-  - number sign (#)
-  - underscore (_)
-- is not a reserved word 
+- A **user-defined** identifier is:
+  - composed of characters from the database character set
+  - either ordinary or quoted 
+  - An **ordinary** user-defined identifier:
+      - begins with a letter
+      - can include letters, digits, and these symbols:
+        - dollar sign ($)
+        - number sign (#)
+        - underscore (_)
+      - is not a reserved word 
+  - A **quoted** user-defined identifier:
+    - is enclosed in double quotation marks
+    - allows any character form the database character set except double quotation marks, new line characters, and null characters.
+    - is case-sensitive, with one exception: if quoted would be valid ordinary without quotation marks, then the quotations are optional and if you do omit them then the identifier is case-insensitive
+    - can use reserved word as a quoted user-defined identifier, but is not recommended and you must always enclose the identifier in double quotation marks and it is always case-sensitive
+- Identifier length:
+  - if `COMPATIBLE` is set to 12.2 or higher, the representation of the identifier in the database character set cannot exceed 128 bytes (excl. double quote marks in quoted identifiers).
+  - if `COMPATIBLE` is set to 12.1 or lower, the limit is 30 bytes
 
-A quoted user-defined identifier:
-- is enclosed in double quotation marks
-- allows any character form the database character set except double quotation marks, new line characters, and null characters.
-- is case-sensitive, with one exception: if quoted would be valid ordinary without quotation marks, then the quotations are optional and if you do omit them then the identifier is case-insensitive
-- can use reserved word as a quoted user-defined identifier, but is not recommended and you must always enclose the identifier in double quotation marks and it is always case-sensitive
-
-
-Identifier length:
-- if COMPATIBLE is set to 12.2 or higher, the representation of the identifier in the database character set cannot exceed 128 bytes (excl. double quote marks in quoted identifiers).
-- if COMPATIBLE is set to 12.1 or lower, the limit is 30 bytes
-
-#### References to identifiers
+### References to identifiers
 When referencing an identifier, you use an name that is either simple, qualified, remote, or both qualified and remote.
 - the **simple name** of an identifier is the name in its declaration, e.g.
 
@@ -58,34 +55,43 @@ When referencing an identifier, you use an name that is either simple, qualified
       /
 
 - if identifier is declared in a named PL/SQL unit, you can (and sometimes must) refernce it with its **qualified name**, syntax (called **dot notation**) is:
-`unit_name.simple_identifier_name`
-e.g. if package p declares identifier a, you can reference the identifier with qualified name `p.a`
-- if the identifier names an object on a remote database, you must reference it with its **remote name**:
-`simple_identifier_name@link_to_remote_database`
-- **qualified remote name**:
-`unit_name.simple_identifier_name@link_to_remote_database`
 
-You can create synonyms for remote schema object, but you cannot create synonyms for objects declared in PL/SQL subprograms or packages.
-You can reference identifiers declared in the packages STANDARD and DBMS_STANDARD without qualifying them with the package names, unless you have declard a local identifier with the same name.
+      unit_name.simple_identifier_name
+  e.g. if package p declares identifier a, you can reference the identifier with qualified name `p.a`
+- if the identifier names an object on a remote database, you must reference it with its **remote name**:
+
+      simple_identifier_name@link_to_remote_database
+- **qualified remote name**:
+
+      unit_name.simple_identifier_name@link_to_remote_database
+
+- You can create synonyms for remote schema object, but you cannot create synonyms for objects declared in PL/SQL subprograms or packages.
+- You can reference identifiers declared in the packages `STANDARD` and `DBMS_STANDARD` without qualifying them with the package names, unless you have declard a local identifier with the same name.
 
 ## ✅List the uses of variables, declare and initialize variables, use bind variables
 [Declarations: 2.3 - 2.3.4](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/plsql-language-fundamentals.html#GUID-65F9E0D0-03CD-4C40-829A-7392ACE8F932)
+
 [Scalar variable declaration syntax](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/scalar-variable-declaration.html#GUID-03124315-0E1E-4154-8EBE-12034CA6AD55)
+
 [Constant declaration syntax](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/constant-declaration.html#GUID-C6DA65F8-3F0C-43F3-8BC6-231064E8C1B6)
+
 [Name Resolution: B](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/plsql-name-resolution.html#GUID-7A77C7A5-F6BE-49F4-A398-EDD8646CE2C9)
+
 [Assigning values to variables: 2.6](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/plsql-language-fundamentals.html#GUID-356CB656-68ED-4869-8C67-FE93A78AEC9A)
+
 [VARIABLE command for bind variables](https://docs.oracle.com/en/database/oracle/oracle-database/19/sqpug/VARIABLE.html#GUID-B4A0DAA3-B6E0-42F7-89B0-EF9C41F02FA3)
+
 [Using bind variables: sqpug 5.12](https://docs.oracle.com/en/database/oracle/oracle-database/19/sqpug/using-scripts-in-SQL-Plus.html#GUID-B52D6F2E-A28A-48B6-B73F-6A9D018BD107)
 
-#### Declarations 
+### Declarations 
 A declaration allocates storage space for a value of a specified data type, and names the storage location so that you can reference it.
 You must declare object before you can reference them. Declaration can appear in the declarative part of any block, subprogram, or package.
 
-- NOT NULL Constraint
-  - you can impose the NOT NULL constraint on a scalar variable or constant
-  - the NOT NULL constraitn prevents assigning a null value to the item. Item can acquire this constraint either implicitly (from datatype, e.g. NATURALN, POSITIVEN, SIMPLE_INTEGER) or explicitly.
-  - if scalar variable declaration specifies NOT NULL, then you must assign an initial value to the variable (because default initial value for scalar variable is NULL)
-  - PL/SQL treats any zero-length string as a NULL value (includes values returned by character function and BOOLEAN expressions)
+- `NOT NULL` Constraint
+  - you can impose the `NOT NULL` constraint on a scalar variable or constant
+  - the `NOT NULL` constraitn prevents assigning a null value to the item. Item can acquire this constraint either implicitly (from datatype, e.g. `NATURALN, POSITIVEN, SIMPLE_INTEGER`) or explicitly.
+  - if scalar variable declaration specifies `NOT NULL`, then you must assign an initial value to the variable (because default initial value for scalar variable is `NULL`)
+  - PL/SQL treats any zero-length string as a `NULL` value (includes values returned by character function and `BOOLEAN` expressions)
 
 - Variable declaration
   - always specifies the name and data type of the variable and allocates storage for it
@@ -93,31 +99,37 @@ You must declare object before you can reference them. Declaration can appear in
   - variable must be a valis user-defined identifier
   - datatype can be any PL/SQL datatype which include SQL datatypes. Datatype is either scalar (without internal components) or composite (with internal components)
   - syntax: 
-  `variable datatype [[not null] {:= | default} expression];`
+  
+        variable datatype [[not null] {:= | default} expression];
 
 - Constant declaration
   - constant holds value that does not change
   - same rules for variables apply for constants, but constant declaration has two more requirements:
-    - keyword CONSTANT
+    - keyword `CONSTANT`
     - initial value of the constant
     e.g. `max_days_year constant integer := 365;`
   - syntax: 
-  `constant_identifier constant datatype [not null] {:= | default} expression;`
+  
+        constant_identifier constant datatype [not null] {:= | default} expression;
 
 - Initial values of variables and constants
   - in variable declaration the initial value is optional unless you specify the not null constraint
   - in constant declaration the initial value is required
   - if declaration is in a block or subprogram, the initial value is assigned to the variable or constant every time control passes to the block or subprogram
   - if declaration is in a package specification, the initial value is assigned to the variable or constant for each session (whether public or private)
-  - to specify initial value, use either the assignment operator (:=) or the keyword DEFAULT followed by an expression, which can include previously declared constants and initialized variables
+  - to specify initial value, use either the assignment operator (:=) or the keyword `DEFAULT` followed by an expression, which can include previously declared constants and initialized variables
   - if you do not specify an initial value for a variable, assign a value to it before using it in any other context
 
 #### Name resolution
 - Qualified names and dot notation
   - when one named item belongs to another named item, you can (and sometimes must) qualify the name of the "child" item with the name of the "parent" item, using dot notation. e.g. sequence_name.currval
-  - if an identifier is declared in a named unit, you can qualify its simple name (name in declaration) with the name of the unit (block, subprogram, or package), using syntax: `unit_name.simple_identifier_name`
+  - if an identifier is declared in a named unit, you can qualify its simple name (name in declaration) with the name of the unit (block, subprogram, or package), using syntax: 
+  
+        unit_name.simple_identifier_name
   - if identifier not visible within scope then you must qualify its name
-  - if identifier belongs to another schema, then you must qualify its name with the name of the schema, using syntax: `schema_name.package_name`
+  - if identifier belongs to another schema, then you must qualify its name with the name of the schema, using syntax: 
+  
+        schema_name.package_name
 
 - Column name precedence
   - if a SQL statement references a name that belongs to both a column and either a local variable or formal parameter, then the column name takes precedence
@@ -133,7 +145,7 @@ You must declare object before you can reference them. Declaration can appear in
 
 - Resolution of names in static SQL statements 
 when PL/SQL compiler finds static SQL statement:
-  1. if the statement is a SELECT statement, the PL/SQL compiler removes the INTO clause
+  1. if the statement is a `SELECT` statement, the PL/SQL compiler removes the `INTO` clause
   1. the plsql compiler sends the statement to the sql subsystem
   1. the the sql subsystem checks the syntax of the statement
   1. if the sql subsystem cannot resolve a name in the scope of the sql statement, then it sends the name vack to the plsql compiler. the name is called an escaped identifier
@@ -295,7 +307,7 @@ The plsql scalar datatypes are: sql datatypes, boolean, pls_integer, binary_inte
   - rowid and urowid variables
     - when you retrieve a rowid into a rowid variable, use the `rowidtochar` function to convert the binary value to character value
     - to convert the value of rowid variable to rowid, use the `chartorowid` function
-    - if value does not represent a valid rowid, plsql raises predefined exception SYS_INVALID_ROWID
+    - if value does not represent a valid rowid, plsql raises predefined exception `SYS_INVALID_ROWID`
     - to retrieve a rowid into a urowid variable, or to convert value of urowid variable to rowid, use an assignment statement; the conversion in implicit
 
 - Boolean data type
@@ -308,7 +320,7 @@ The plsql scalar datatypes are: sql datatypes, boolean, pls_integer, binary_inte
     - use a boolean expression in a sql statement, except as an argument to a plsql function invoked in a sql query or in an anonymous block
   - cannot pass a boolean value to the dbms_output.put[_line] subprograms, to print boolean use if or case statement and translate to character 
 
-- PLS_INTEGER and BINARY_INTEGER data types
+- `PLS_INTEGER` and `BINARY_INTEGER` data types
   - pls_integer and binary_integer are identical (moving forward, both are implicated when one is mentioned)
   - pls_integer stores signed integers in range -2,147,483,648 through 2,147,483,647 in 32 bits
   - pls_integer has advantages over the number data type and number subtypes:
@@ -336,12 +348,13 @@ The plsql scalar datatypes are: sql datatypes, boolean, pls_integer, binary_inte
   - an **unconstrained subtype** has the same set of values as its vase type, so it is only another name for the base type, therefore if they are of the same base type then they are interchangeable with each other and with the base type, no data type conversion occurs
   syntax: `subtype subtype_name is base_type`, e.g. `subtype "DOUBLE PRECISION" is float` (ansi compatible)
   - a **constrained subtype** has only a subset of the values of its base type. If the base type lets you specify size, precision and scale, or a range of values, then you can specify them for its subtypes. syntax: 
-  `subtype subtype_name is base_type {precision [, scale] | range low_value .. high_value} [not null]`
+
+        subtype subtype_name is base_type {precision [, scale] | range low_value .. high_value} [not null]
   a constrained subtype can be implicitly converted to its base type, but the base type can be implicitly converted to the constrained subtype only if the value does not violate a constraint of the subtype
   same goes for converting constrained subtype to another constrained subtype with same base type, can only happen if source value does not violate constraint of the target
   - if two subtypes have different base types in the same data type family, then one subtype can be implicitly converted to the other only if the source value does not violate a constraint of the target subtype.
 
-For a list of datatypes and datatype families in the STANDARD package, see [PL/SQL predefined data types](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/plsql-predefined-data-types.html#GUID-1D28B7B6-15AE-454A-8134-F8724551AE8B)
+For a list of datatypes and datatype families in the `STANDARD` package, see [PL/SQL predefined data types](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/plsql-predefined-data-types.html#GUID-1D28B7B6-15AE-454A-8134-F8724551AE8B)
 
 #### Abstract data types
 - An Abstract Data Type (ADT) consists of a data structure and subprograms that manipulate the data
@@ -366,14 +379,14 @@ referenced_item can be: `collection_variable`, `cursor_variable`, `db_table_or_v
 
 #### %ROWTYPE
 - the `%ROWTYPE` attribute lets you declare a **record variable** that represents either a full or partial row of a database table or view
-- For every visible column of the full or partial row, the record has a field with the same name and data type. If the structure of the row changes, then the structure of the record changes accordingly. Making an invisible column visible changes the structure of some records declared with the %ROWTYPE attribute. 
+- For every visible column of the full or partial row, the record has a field with the same name and data type. If the structure of the row changes, then the structure of the record changes accordingly. Making an invisible column visible changes the structure of some records declared with the `%ROWTYPE` attribute. 
 - to declare a record variable that always represents a full row of a database table or view, use this syntax: `variable_name table_or_view_name%rowtype;`
 for every column of the table or view, the record then has a field with the same name and data type
 - `%rowtype` variable des not inherit initial values or constraints
 - to declare a record variable that can represent a partial row of a database table or view, 
 use syntax: `variable_name {explicit_cursor|cursor_variable}%rowtype`
 a cursor is associated with a query, for every column that the query selects, the record variable must have a corresponding type-compatible field. If the query selects every row then variable represents full row, otherwise variable represents partial row (can also be join row, join query). The cursor must be either an explicit cursor or a strong cursor variable
-- if you use the `%rowtype` attribute to define a record variable that represents a full row of a table that has a virtual column, then you cannot insert that record into the table (*ORA-54013: INSERT operation disallowed on virtual columns*). Instead you must insert the individual record fields into the table, excluding the virtual column
+- if you use the `%rowtype` attribute to define a record variable that represents a full row of a table that has a virtual column, then you cannot insert that record into the table (`ORA-54013: INSERT operation disallowed on virtual columns`). Instead you must insert the individual record fields into the table, excluding the virtual column
 - suppose that you use the `%rowtype` attribute to define a record variable that represents a row of a table that has an invisible column, and then you make the invisible column visible. 
   - if you define the record variable with a cursor, then making the invisible column visible does not change the structure of the record variable
   - if you define the record variable as a full row and use a `select * into` statement to assign values to the record, then making the invisible column visible does change the structure of the record

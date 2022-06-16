@@ -108,7 +108,9 @@ PL/SQL categories of control statements are:
 
 ## ✅Construct and identify loop statements
 [Basic loop: 4.2 - 4.2.1](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/plsql-control-statements.html#GUID-4CD12F11-2DB8-4B0D-9E04-DF983DCF9358)
+
 [For loop: 4.2.6](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/plsql-control-statements.html#GUID-C4BC9960-5945-4646-BBDE-DC00346F8702)
+
 [While loop: 4.2.7](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/plsql-control-statements.html#GUID-3F69F563-BCAE-4D3E-8E03-F53C8D64D093)
 
 - Loop statements run the same statements with a series of different values. The loop statements are:
@@ -179,8 +181,11 @@ PL/SQL categories of control statements are:
     
 ## ✅Use EXIT and CONTINUE statements inside loops
 [EXIT: 4.2.2 - 4.2.3](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/plsql-control-statements.html#GUID-BDA8C30C-5F4C-4FE6-8CEF-0377DC474A6F)
+
 [CONTINUE: 4.2.4 - 4.2.5](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/plsql-control-statements.html#GUID-F8B243D3-F7B4-4278-B262-283C521D600C)
+
 [GOTO: 4.3 - 4.3.1](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/plsql-control-statements.html#GUID-7C14CDED-B86F-4496-A1F6-8C3B67E3B032)
+
 [NULL: 4.3.2](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/plsql-control-statements.html#GUID-FB72FFC2-4B55-45C9-BA38-57511913242F)
 
 - unlike the `IF` and `LOOP` statement, the sequential control statements `GOTO` and `NULL` are not crucial to plsql programming

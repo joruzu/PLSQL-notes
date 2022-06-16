@@ -51,6 +51,7 @@ A function has the same structure as a procedure, except that:
 
 ## ✅Describe the uses of functions
 [Function result cache: 8.12](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/plsql-subprograms.html#GUID-250BDBBB-0CD6-4D56-9DDF-6FCEDC110D00)
+
 [Functions that SQL can invoke: 8.13](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/plsql-subprograms.html#GUID-4FC97312-AC30-4A6E-8337-996198191E29)
 
 ### Function result cache
@@ -132,8 +133,11 @@ A function has the same structure as a procedure, except that:
 
 ## ✅Work with functions (create, invoke and remove functions)
 [Function declaration and definition: 13.36](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/function-declaration-and-definition.html#GUID-4E19FB09-46B5-4CE5-8A5B-CD815C29DA1C)
+
 [CREATE FUNCTION](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/CREATE-FUNCTION-statement.html#GUID-B71BC5BD-B87C-4054-AAA5-213E856651F2)
+
 [ALTER FUNCTION](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/ALTER-FUNCTION-statement.html#GUID-C78E0E7E-6BCF-4AE8-8C75-9F133E8FB4E1)
+
 [DROP FUNCTION](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/DROP-FUNCTION-statement.html#GUID-415FF998-4B2D-48AA-9275-465B17952280)
 
 ### Function declaration and definition
