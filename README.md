@@ -23,6 +23,10 @@ Some of my notes and preparation for the **[Oracle PL/SQL Exam 1Z0-149](https://
 1. [Managing PL/SQL Code](./1z0-149_topics/17_managing_code.md)
 1. [Managing Dependencies](./1z0-149_topics/18_dependencies.md)
 
+# Reference
+
+[Reference List](./1z0-149_topics/references.md)
+
 # Exercises
 
 Practice exercises from the following books:
